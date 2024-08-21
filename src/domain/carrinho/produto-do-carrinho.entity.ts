@@ -30,4 +30,16 @@ export class ItemDoCarrinho extends Entity<
   get preco(): CurrencyVo {
     return this.props.preco;
   }
+
+  static create(
+    valor: CurrencyVo,
+    quantidade: number,
+    productId: ProductID,
+  ): ItemDoCarrinho {
+    return new ItemDoCarrinho({
+      quantidade,
+      preco: valor,
+      produtoId: productId,
+    });
+  }
 }

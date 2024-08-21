@@ -12,5 +12,6 @@ export abstract class ValueObject<T extends ValueObjectProps> {
   public getValue(): T {
     return this.props;
   }
+
   abstract equals(vo: ValueObject<T>): boolean;
 }

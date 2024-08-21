@@ -1,5 +1,5 @@
+import { AggregateRoot } from '../aggregate';
 import { CurrencyVo } from '../currency.vo';
-import { Entity } from '../entity';
 import { ProductID } from './produto.id';
 
 export interface ProductProps {
@@ -9,7 +9,7 @@ export interface ProductProps {
   updatedAt: Date;
 }
 
-export class ProductEntity extends Entity<ProductID, ProductProps> {
+export class Produto extends AggregateRoot<ProductID, ProductProps> {
   validate(): string | undefined {
     if (!this.props.name) {
       return 'Product name is required';
@@ -25,5 +25,15 @@ export class ProductEntity extends Entity<ProductID, ProductProps> {
 
   get price(): CurrencyVo {
     return this.props.price;
+  }
+
+  static create(name: string, price: CurrencyVo): Produto {
+    const produto = new Produto({
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      name,
+      price,
+    });
+    return produto;
   }
 }

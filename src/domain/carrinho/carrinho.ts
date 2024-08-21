@@ -23,7 +23,12 @@ export class Carrinho extends AggregateRoot<CarrinhoId, CarrinhoProps> {
 
   get total(): CurrencyVo {
     return this.props.itens.reduce(
-      (acc, item) => acc.adicionar(item.preco),
+      (acc, item) =>
+        acc.adicionar(
+          CurrencyVo.createCurrency(
+            item.preco.getValue().value * item.getProps().quantidade,
+          ),
+        ),
       CurrencyVo.createCurrency(0),
     );
   }

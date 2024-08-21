@@ -1,4 +1,4 @@
-{
+module.exports = {
   roots: ['<rootDir>/src'],
   testMatch: [
     '**/src/**/*.(spec)+(ts|tsx|js)',
@@ -8,4 +8,4 @@
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
   verbose: true,
-}
+};
